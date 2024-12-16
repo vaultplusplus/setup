@@ -1,0 +1,13 @@
+name: "Setup VPP CLI"
+description: "Install the VaultPlusPlus CLI"
+runs:
+  using: "composite"
+  steps:
+    - name: Install VPP CLI (Linux and Mac)
+      run: eval "$(curl -fsSLA $SHELL https://vpp.sh)"
+      shell: bash
+      if: runner.os != 'Windows'
+    - name: Install VPP CLI (Windows)
+      run: irm https://vpp.sh | iex;
+      shell: pwsh
+      if: runner.os == 'Windows'
